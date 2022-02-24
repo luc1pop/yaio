@@ -28,14 +28,14 @@ namespace Yaio.Views
             InitializeComponent();
         }
 
-        
 
-       
+
+
 
         protected override void OnClosing(CancelEventArgs e)
         {
             MainWindowViewModel viewModel = this.DataContext as MainWindowViewModel;
-           
+
 
         }
 
@@ -66,18 +66,44 @@ namespace Yaio.Views
         private void StartProcess_Click(object sender, RoutedEventArgs e)
         {
             var viewModel = DataContext as MainWindowViewModel;
-            viewModel.StartProcess();
+            try
+            {
+                viewModel.StartProcess();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
         }
         private void StartExtractingProcess_Click(object sender, RoutedEventArgs e)
         {
             var viewModel = DataContext as MainWindowViewModel;
-            viewModel.StartExtractingProcess();
+            try
+            {
+                viewModel.StartExtractingProcess();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
         }
         private void StopProcess_Click(object sender, RoutedEventArgs e)
         {
             var viewModel = DataContext as MainWindowViewModel;
-            viewModel.CancelProcess();
+            try
+            {
+                viewModel.CancelProcess();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
         }
-
     }
+
 }
+

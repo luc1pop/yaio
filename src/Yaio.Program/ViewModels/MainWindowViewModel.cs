@@ -248,9 +248,30 @@ namespace Yaio.ViewModels
             }
         }
 
+
+
+
+        public string WindowTitle
+        {
+            get
+            {
+                try
+                {
+                    System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+                    System.Diagnostics.FileVersionInfo fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
+                    return "Yaio " + fvi.FileVersion;
+                }
+                catch (Exception ex)
+                { }
+                return "Yaio ";
+
+            }
+
+        }
+
         private void _ProcessViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            switch(e.PropertyName)
+            switch (e.PropertyName)
             {
             }
         }
