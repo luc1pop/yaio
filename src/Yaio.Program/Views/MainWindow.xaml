@@ -84,6 +84,6 @@
             <TreeView Grid.Column="0" Background="DarkGray" ItemsSource="{Binding FolderPaths}"></TreeView>
             <ListView Grid.Column="2" Background="DarkGray" ItemsSource="{Binding Images}"></ListView>
         </Grid>-->
-        <ListView ItemsSource="{Binding Log}"></ListView>
+        <ListView ItemsSource="{Binding Log}"  SelectedItem="{Binding SelectedLogMessage}"></ListView>
     </DockPanel>
 </Window>

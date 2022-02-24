@@ -233,6 +233,14 @@ namespace Yaio.ViewModels
             }
         }
 
+        private LogViewModel _selected;
+        public LogViewModel SelectedLogMessage
+        {
+            get { return _selected; }
+            set { _selected = value; NotifyPropertyChanged("SelectedLogMessage"); }
+        }
+
+
         NotifyTaskCompletion<ProcessResult> _ProcessViewModel;
         public NotifyTaskCompletion<ProcessResult> ProcessViewModel
         {
@@ -358,8 +366,10 @@ namespace Yaio.ViewModels
         {
             Application.Current.Dispatcher.Invoke((Action)delegate // <--- HERE
             {
-                Log.Add(new LogViewModel(entry));
+                var tmpVar = new LogViewModel(entry);
+                Log.Add(tmpVar);
                 NotifyPropertyChanged(nameof(Log));
+                SelectedLogMessage = tmpVar;
             });
         }
     }
