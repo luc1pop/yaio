@@ -1,0 +1,59 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Yaio.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="FromFolderPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ToFolderPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="FileExtensions" Type="System.String" Scope="User">
+      <Value Profile="(Default)">.jpg,.mpg,.tiff,.jpeg</Value>
+    </Setting>
+    <Setting Name="CreateYearDirectory" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="CreateMonthDirectory" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Recursive" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="PrefixHtml" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;style&gt;
+img {
+max-width:200px;
+max-height:200px;
+width: auto;      
+height: auto;     
+}
+&lt;/style&gt;
+
+&lt;script&gt;
+function myFunction() {
+    var x = document.getElementById("mySelect").value;
+	//alert(x);
+		var img = document.getElementsByTagName('img');
+        for(var i=0;i&lt;img.length;i++) {
+           img[i].style.maxWidth = x + 'px';
+           img[i].style.maxHeight = x + 'px'; 
+	}
+}
+&lt;/script&gt;
+
+&lt;select id="mySelect" onchange="myFunction()"&gt;
+  &lt;option value="500"&gt;500
+  &lt;option value="400"&gt;400
+  &lt;option value="300"&gt;300
+  &lt;option value="200"&gt;200
+&lt;/select&gt;</Value>
+    </Setting>
+    <Setting Name="DeleteDuplicateFilesFromProcessFolder" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SearchForDuplicatesRecursivelyInYearFolder" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

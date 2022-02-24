@@ -1,0 +1,89 @@
+﻿<Window x:Class="Yaio.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Yaio" Height="680.1" Width="786"
+        xmlns:conv="clr-namespace:Yaio.Converters" 
+        Loaded="Window_Loaded" >
+    <Window.Resources>
+        <conv:BoolVisibilityConverter x:Key="boolVisibilityConverter"/>
+        <conv:Negate x:Key="negate"/>
+
+    </Window.Resources>
+    <DockPanel LastChildFill="True" Background="DarkGray">
+        <DockPanel DockPanel.Dock="Top">
+            <StackPanel DockPanel.Dock="Right">
+                <Button Click="StartProcess_Click" Margin="3" 
+                        IsEnabled="{Binding ProcessViewModel.IsRunning, Converter={StaticResource negate}}">
+                    Start moving</Button>
+
+                <Button Click="StartExtractingProcess_Click" Margin="3" 
+                        IsEnabled="{Binding ProcessViewModel.IsRunning, Converter={StaticResource negate}}" Visibility="Hidden">
+                    Start extracting</Button>
+                <Button Click="StopProcess_Click" Margin="3" IsEnabled="{Binding ProcessViewModel.IsRunning}">Stop</Button>
+
+            </StackPanel>
+            <StackPanel DockPanel.Dock="Top">
+                <GroupBox Header="Process directory:">
+                    <DockPanel LastChildFill="True" IsEnabled="{Binding ProcessViewModel.IsRunning, Converter={StaticResource negate}}">
+                        <Button Click="FolderBrowseButton_Click" Name="FromFolderBrowseButton" Width="20" DockPanel.Dock="Right">...</Button>
+                        <TextBox Text="{Binding FromFolderPath}" DockPanel.Dock="Left"></TextBox>
+                    </DockPanel>
+                </GroupBox>
+                <GroupBox Header="Target directory:">
+                    <StackPanel>
+                    <DockPanel LastChildFill="True" IsEnabled="{Binding ProcessViewModel.IsRunning, Converter={StaticResource negate}}">
+                        <Button Click="FolderBrowseButton_Click" Name="ToFolderBrowseButton" Width="20" DockPanel.Dock="Right">...</Button>
+                        <TextBox Text="{Binding ToFolderPath}" DockPanel.Dock="Left"></TextBox>
+                    </DockPanel>
+                    <GroupBox Header="Month folder suffix">
+                        <TextBox Text="{Binding FolderSufix}"></TextBox>
+                    </GroupBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Settings:">
+                    <DockPanel LastChildFill="True" IsEnabled="{Binding ProcessViewModel.IsRunning, Converter={StaticResource negate}}">
+                        <StackPanel Orientation="Vertical" DockPanel.Dock="Left">
+                            <CheckBox IsChecked="{Binding CreateYearDirectory}" Margin="5">Create years directory</CheckBox>
+                            <CheckBox IsChecked="{Binding CreateMonthDirectory}" Margin="5">Create months directory</CheckBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" DockPanel.Dock="Left">
+                            <CheckBox IsChecked="{Binding Recursive}" DockPanel.Dock="Top" Margin="5">Recursive</CheckBox>
+                            <CheckBox IsChecked="{Binding DeleteDuplicateFilesFromProcessFolder}" DockPanel.Dock="Top" Margin="5">Delete duplicate files from process folder</CheckBox>
+                            <CheckBox IsChecked="{Binding SearchForDuplicatesRecursivelyInYearFolder}" DockPanel.Dock="Top" Margin="5">Recursive search for duplicates in year folder</CheckBox>
+                        </StackPanel>
+                        <GroupBox Header="File filter .jpg,.mpg" DockPanel.Dock="Bottom">
+                            <TextBox Text="{Binding FileExtensions}" DockPanel.Dock="Left"></TextBox>
+                        </GroupBox>
+                    </DockPanel>
+                </GroupBox>
+
+                <DockPanel LastChildFill="True">
+                    <ProgressBar  Margin="3"
+                             Visibility="{Binding ProcessViewModel.IsRunning,Converter={StaticResource boolVisibilityConverter}}"
+                             Value="{Binding ProgressValue}" Maximum="{Binding ProgressMaximum}" Height="20"></ProgressBar>
+
+                </DockPanel>
+            </StackPanel>
+        </DockPanel>
+        <StatusBar DockPanel.Dock="Bottom">
+            <TextBlock MinWidth="300"></TextBlock>
+        </StatusBar>
+
+        <!--<Grid>
+             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*" />
+                <ColumnDefinition Width="3"/>
+                <ColumnDefinition Width="0.7*"/>
+            </Grid.ColumnDefinitions>
+            <GridSplitter 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Stretch" 
+                            ResizeBehavior="PreviousAndNext" 
+                            Grid.Column="1" 
+                            Width="3" />
+            <TreeView Grid.Column="0" Background="DarkGray" ItemsSource="{Binding FolderPaths}"></TreeView>
+            <ListView Grid.Column="2" Background="DarkGray" ItemsSource="{Binding Images}"></ListView>
+        </Grid>-->
+        <ListView ItemsSource="{Binding Log}"></ListView>
+    </DockPanel>
+</Window>
