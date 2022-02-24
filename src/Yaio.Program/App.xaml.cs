@@ -17,10 +17,18 @@ namespace Yaio
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            base.OnStartup(e);
-            Views.MainWindow mainWindow = new Views.MainWindow();
-            mainWindow.DataContext = new ViewModels.MainWindowViewModel();
-            MainWindow.Show();
+            try
+            {
+                base.OnStartup(e);
+                Views.MainWindow mainWindow = new Views.MainWindow();
+                mainWindow.DataContext = new ViewModels.MainWindowViewModel();
+                MainWindow.Show();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
         }
     }
 }
