@@ -9,7 +9,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="FileExtensions" Type="System.String" Scope="User">
-      <Value Profile="(Default)">.jpg,.mpg,.tiff,.jpeg</Value>
+      <Value Profile="(Default)">.jpg,.mpg,.tiff,.jpeg,.tif,.mp4,.mov,.avi,.3gp</Value>
     </Setting>
     <Setting Name="CreateYearDirectory" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>

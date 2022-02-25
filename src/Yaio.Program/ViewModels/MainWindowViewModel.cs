@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Security;
 using System.Text;
 using System.Threading;
@@ -201,6 +202,7 @@ namespace Yaio.ViewModels
                 {
                     _ProgressValue = value;
                     NotifyPropertyChanged(nameof(ProgressValue));
+                    NotifyPropertyChanged(nameof(WindowTitle));
                 }
             }
         }
@@ -265,13 +267,12 @@ namespace Yaio.ViewModels
             {
                 try
                 {
-                    System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
-                    System.Diagnostics.FileVersionInfo fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
-                    return "Yaio " + fvi.FileVersion;
+                    Version version = Assembly.GetEntryAssembly().GetName().Version;
+                    return $"Yaio {ProgressValue} of {ProgressMaximum} ({version.ToString()})";
                 }
                 catch (Exception ex)
                 { }
-                return "Yaio ";
+                return $"Yaio {ProgressValue} of {ProgressMaximum}";
 
             }
 
@@ -369,7 +370,7 @@ namespace Yaio.ViewModels
                 var tmpVar = new LogViewModel(entry);
                 Log.Add(tmpVar);
                 NotifyPropertyChanged(nameof(Log));
-                SelectedLogMessage = tmpVar;
+                SelectedLogMessage = Log.LastOrDefault();
             });
         }
     }

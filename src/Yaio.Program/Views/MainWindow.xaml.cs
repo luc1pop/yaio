@@ -73,7 +73,6 @@ namespace Yaio.Views
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                throw;
             }
         }
         private void StartExtractingProcess_Click(object sender, RoutedEventArgs e)
@@ -87,7 +86,6 @@ namespace Yaio.Views
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                throw;
             }
         }
         private void StopProcess_Click(object sender, RoutedEventArgs e)
@@ -100,7 +98,6 @@ namespace Yaio.Views
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                throw;
             }
         }
     }

@@ -23,13 +23,13 @@
 
             </StackPanel>
             <StackPanel DockPanel.Dock="Top">
-                <GroupBox Header="Process directory:">
+                <GroupBox Header="Process folder:">
                     <DockPanel LastChildFill="True" IsEnabled="{Binding ProcessViewModel.IsRunning, Converter={StaticResource negate}}">
                         <Button Click="FolderBrowseButton_Click" Name="FromFolderBrowseButton" Width="20" DockPanel.Dock="Right">...</Button>
                         <TextBox Text="{Binding FromFolderPath}" DockPanel.Dock="Left"></TextBox>
                     </DockPanel>
                 </GroupBox>
-                <GroupBox Header="Target directory:">
+                <GroupBox Header="Target folder:">
                     <StackPanel>
                     <DockPanel LastChildFill="True" IsEnabled="{Binding ProcessViewModel.IsRunning, Converter={StaticResource negate}}">
                         <Button Click="FolderBrowseButton_Click" Name="ToFolderBrowseButton" Width="20" DockPanel.Dock="Right">...</Button>
@@ -43,8 +43,8 @@
                 <GroupBox Header="Settings:">
                     <DockPanel LastChildFill="True" IsEnabled="{Binding ProcessViewModel.IsRunning, Converter={StaticResource negate}}">
                         <StackPanel Orientation="Vertical" DockPanel.Dock="Left">
-                            <CheckBox IsChecked="{Binding CreateYearDirectory}" Margin="5">Create years directory</CheckBox>
-                            <CheckBox IsChecked="{Binding CreateMonthDirectory}" Margin="5">Create months directory</CheckBox>
+                            <CheckBox IsChecked="{Binding CreateYearDirectory}" Margin="5">Create years folder</CheckBox>
+                            <CheckBox IsChecked="{Binding CreateMonthDirectory}" Margin="5">Create months folder</CheckBox>
                         </StackPanel>
                         <StackPanel Orientation="Vertical" DockPanel.Dock="Left">
                             <CheckBox IsChecked="{Binding Recursive}" DockPanel.Dock="Top" Margin="5">Recursive</CheckBox>
@@ -58,9 +58,26 @@
                 </GroupBox>
 
                 <DockPanel LastChildFill="True">
-                    <ProgressBar  Margin="3"
+                    <!--<ProgressBar  Margin="3"
                              Visibility="{Binding ProcessViewModel.IsRunning,Converter={StaticResource boolVisibilityConverter}}"
-                             Value="{Binding ProgressValue}" Maximum="{Binding ProgressMaximum}" Height="20"></ProgressBar>
+                             Value="{Binding ProgressValue}" Maximum="{Binding ProgressMaximum}" Height="20"></ProgressBar>-->
+                    <Grid  Visibility="{Binding ProcessViewModel.IsRunning,Converter={StaticResource boolVisibilityConverter}}">
+                        <ProgressBar Minimum="0" 
+               Value="{Binding ProgressValue}" Maximum="{Binding ProgressMaximum}" Height="20" 
+                Name="pbStatus" />
+                        <TextBlock 
+           HorizontalAlignment="Center" 
+           VerticalAlignment="Center" 
+                            >
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}File: {0} of {1}">
+                                    <Binding Path="Value" ElementName="pbStatus" />
+                                    <Binding Path="Maximum" ElementName="pbStatus" />
+                                </MultiBinding>
+
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </Grid>
 
                 </DockPanel>
             </StackPanel>

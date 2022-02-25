@@ -14,7 +14,7 @@ namespace Yaio.ViewModels
         {
             if (PropertyChanged != null)
             {
-                System.Diagnostics.Debug.Print(info);
+               // System.Diagnostics.Debug.Print(info);
                 PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(info));
             }
         }
